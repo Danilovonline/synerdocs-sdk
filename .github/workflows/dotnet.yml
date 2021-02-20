@@ -17,9 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Get tag
+      id: tag
+      uses: dawidd6/action-get-tag@v1
+    - name: Use tag
+      run: echo ${{steps.tag.outputs.tag}}    
     
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
@@ -34,10 +36,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name:  ${{ steps.git_version.VERSION }}
-        release_name: ${{ steps.git_version.VERSION }}
+        tag_name:  ${{steps.tag.outputs.tag}}
+        release_name: ${{steps.tag.outputs.tag}}
         body: |
-           ${{ steps.git_version.V }}
+           ${{steps.tag.outputs.tag}}
         draft: true
         prerelease: false
         
