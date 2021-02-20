@@ -32,12 +32,12 @@ jobs:
       id: create_release
       uses: actions/create-release@latest
       env:
-        GITHUB_TOKEN: ${{ env.RELEASE_VERSION }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name:  ${{ env.RELEASE_VERSION }}
-        release_name:  ${{ env.RELEASE_VERSION }}
+        tag_name:  ${{ steps.git_version.VERSION }}
+        release_name: ${{ steps.git_version.VERSION }}
         body: |
-           ${{ steps.previoustag.outputs.tag }}
+           ${{ steps.git_version.V }}
         draft: true
         prerelease: false
         
@@ -49,5 +49,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
-        asset_name: Midway.ConsoleClient. ${{ env.RELEASE_VERSION }}.zip
+        asset_name: Midway.ConsoleClient.${{ steps.git_version.VERSION }}.zip
         asset_content_type: application/zip
