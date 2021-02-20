@@ -23,7 +23,7 @@ jobs:
       
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
       
     - name: Create Release
       id: create_release
@@ -31,10 +31,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ get_version }}
-        release_name: ${{ get_version }}
+        tag_name: ${{ steps.get_version.TAG }}
+        release_name: ${{ steps.get_version.TAG }}
         body: |
-          ${{ get_version }}
+          ${{ steps.get_version.TAG }}
         draft: true
         prerelease: false
         
@@ -46,5 +46,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
-        asset_name: Midway.ConsoleClient.${{ get_version }}.zip
+        asset_name: Midway.ConsoleClient.${{ steps.get_version.TAG }}.zip
         asset_content_type: application/zip
