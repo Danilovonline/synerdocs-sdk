@@ -20,3 +20,10 @@ jobs:
     - name: MSBuild
       working-directory: SDK/Midway.ConsoleClient
       run: msbuild Midway.ConsoleClient.csproj
+      
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          *.*
