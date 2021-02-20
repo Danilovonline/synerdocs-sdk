@@ -19,7 +19,7 @@ jobs:
 
     - name: MSBuild
       working-directory: SDK/Midway.ConsoleClient
-      run: msbuild Midway.ConsoleClient.csproj
+      run: msbuild Midway.ConsoleClient.csproj -verbosity:diag
       
     - name: Create Release
       id: create_release
