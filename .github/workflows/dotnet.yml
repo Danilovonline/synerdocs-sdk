@@ -21,16 +21,20 @@ jobs:
       working-directory: SDK/Midway.ConsoleClient
       run: msbuild Midway.ConsoleClient.csproj -verbosity:diag
       
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.GITHUB_REF }}
-        release_name: ${{ env.GITHUB_REF }}
+        tag_name: ${{ get_version }}
+        release_name: ${{ get_version }}
         body: |
-          ${{ env.GITHUB_REF }}
+          ${{ get_version }}
         draft: true
         prerelease: false
         
@@ -42,5 +46,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
-        asset_name: Midway.ConsoleClient.${{ env.GITHUB_REF }}.zip
+        asset_name: Midway.ConsoleClient.${{ get_version }}.zip
         asset_content_type: application/zip
