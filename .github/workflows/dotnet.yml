@@ -17,9 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Get Previous tag
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+    - uses: oprypin/find-latest-tag@v1
+      with:
+        repository: octokit/rest.js  # The repository to scan.
+        releases-only: true  # We know that all relevant tags have a GitHub release for them.
+      id: octokit  # The step ID to refer to later.
+    
+    - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
 
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
