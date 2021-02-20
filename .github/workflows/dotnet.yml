@@ -4,10 +4,9 @@ on:
     push:
       tags:
         - '2.*.*'
-  #push:
-        #branches: [ master ]
-  #pull_request:
-  #  branches: [ master ]
+      #branches: [ master ]
+    #pull_request:
+      #branches: [ master ]
 
 jobs:
   build:
@@ -19,7 +18,7 @@ jobs:
 
     - name: Get tag
       id: tag
-      uses: dawidd6/action-get-tag@v1
+      uses: dawidd6/action-get-tag@v1 #https://github.com/marketplace/actions/get-tag
     - name: Use tag
       run: echo ${{steps.tag.outputs.tag}}    
     
@@ -39,7 +38,7 @@ jobs:
         tag_name:  ${{steps.tag.outputs.tag}}
         release_name: ${{steps.tag.outputs.tag}}
         body: |
-           ${{steps.tag.outputs.tag}}
+           ${{ github.event.head_commit.message }}
         draft: true
         prerelease: false
         
