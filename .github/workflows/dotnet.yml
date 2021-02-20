@@ -21,20 +21,19 @@ jobs:
       working-directory: SDK/Midway.ConsoleClient
       run: msbuild Midway.ConsoleClient.csproj -verbosity:diag
       
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
-      
+    - name: 'Get Previous tag'
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"      
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.get_version.TAG }}
-        release_name: ${{ steps.get_version.TAG }}
+        tag_name:  ${{ steps.previoustag.outputs.tag }}
+        release_name:  ${{ steps.previoustag.outputs.tag }}
         body: |
-          ${{ steps.get_version.TAG }}
+           ${{ steps.previoustag.outputs.tag }}
         draft: true
         prerelease: false
         
@@ -46,5 +45,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
-        asset_name: Midway.ConsoleClient.${{ steps.get_version.TAG }}.zip
+        asset_name: Midway.ConsoleClient. ${{ steps.previoustag.outputs.tag }}.zip
         asset_content_type: application/zip
