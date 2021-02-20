@@ -13,5 +13,6 @@ SDK предназначено для разработчиков интегра�
 
 Также полезную информацию можно найти на сайте [www.synerdocs.ru](http://www.synerdocs.ru):
 * [Инструкции, руководства, XSD-схемы](http://www.synerdocs.ru/support);
+* [Описание API](https://club.directum.ru/webhelp/synerdocs/index.html?synerdocs_coll_api_synerdocs.htm);
 * [Интеграция с КИС](http://www.synerdocs.ru/kis);
 * [Интеграция с 1С](http://www.synerdocs.ru/1c).
