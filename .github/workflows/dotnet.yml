@@ -2,10 +2,10 @@ name: SDK release
 
 on:
     push:
-  #      tags:
-  #        - '2.*.*'
+      tags:
+        - '2.*.*'
   #push:
-        branches: [ master ]
+        #branches: [ master ]
   #pull_request:
   #  branches: [ master ]
 
