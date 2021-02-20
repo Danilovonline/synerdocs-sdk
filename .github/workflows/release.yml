@@ -41,7 +41,7 @@ jobs:
         release_name: ${{steps.tag.outputs.tag}}(${{steps.current_date.outputs.date}})
         body: |
            ${{ github.event.head_commit.message }}
-        draft: true
+        draft: false
         prerelease: false
         
     - name: Upload Release Asset
