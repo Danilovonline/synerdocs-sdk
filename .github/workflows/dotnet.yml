@@ -27,10 +27,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ GITHUB_REF }}
-        release_name: ${{ GITHUB_REF }}
+        tag_name: ${{ env.GITHUB_REF }}
+        release_name: ${{ env.GITHUB_REF }}
         body: |
-          ${{ GITHUB_REF }}
+          ${{ env.GITHUB_REF }}
         draft: true
         prerelease: false
         
@@ -42,5 +42,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
-        asset_name: Midway.ConsoleClient.${{ GITHUB_REF }}.zip
+        asset_name: Midway.ConsoleClient.${{ env.GITHUB_REF }}.zip
         asset_content_type: application/zip
