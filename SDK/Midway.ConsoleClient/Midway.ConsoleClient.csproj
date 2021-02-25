@@ -3,7 +3,7 @@
   <Target Name="ZipOutputPath" AfterTargets="Build">
     <ZipDirectory
       SourceDirectory="$(OutputPath)"
-      DestinationFile="$(MSBuildProjectDirectory)\Midway.ConsoleClient.zip" 
+      DestinationFile="$(MSBuildProjectDirectory)\bin\Midway.ConsoleClient.zip" 
       Overwrite="True" />
   </Target>
   <PropertyGroup>

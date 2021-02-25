@@ -51,6 +51,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./SDK/Midway.ConsoleClient/Midway.ConsoleClient.zip
+        asset_path: ./SDK/Midway.ConsoleClient/bin/Midway.ConsoleClient.zip
         asset_name: Midway.ConsoleClient.${{steps.tag.outputs.tag}}.zip
         asset_content_type: application/zip
