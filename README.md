@@ -1,5 +1,5 @@
 # Synerdocs SDK
-
+fff
 Программный интерфейс [сервиса обмена электронными документами Synerdocs](http://www.synerdocs.ru) позволяет интегрироваться с учетными системами через API Synerdocs на платформах, поддерживающих работу с протоколом [SOAP](https://ru.wikipedia.org/wiki/SOAP).
 
 WSDL доступна по адресу [https://service.synerdocs.ru/ExchangeService.svc?wsdl](https://service.synerdocs.ru/ExchangeService.svc?wsdl).
